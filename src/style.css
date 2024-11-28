@@ -1,3 +1,10 @@
 body {
-  background: red;
+  background: rgba(227, 56, 56, 0.702);
+}
+
+main {
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
 }
