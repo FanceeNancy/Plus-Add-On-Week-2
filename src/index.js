@@ -6,7 +6,7 @@ function updateTime() {
     let firstCityDateElement = firstCityElement.querySelector(".date");
     let firstCityTimeElement = firstCityElement.querySelector(".time");
     let fullCityName = pprintCityName(firstCityElement.id);
-    //console.log(fullCityName);
+
     let timezone = getTimezoneFromCity(fullCityName);
     let firstCityTime = moment().tz(`${timezone}`);
     let cityTime = firstCityTime.format("h:mm:ss");
@@ -33,11 +33,9 @@ function pprintCityName(cityNameWithAZ) {
     let updatedFirstPart = pprintOneName(cityNameFirstPart);
     let cityNameSecondPart = cityNameWithAZ.split("-")[1];
     let updatedSecondPart = pprintOneName(cityNameSecondPart);
-    //console.log(`${updatedFirstPart} ${updatedSecondPart}`);
     return `${updatedFirstPart}_${updatedSecondPart}`;
   } else {
     let updatedCityName = pprintOneName(cityNameWithAZ);
-    //console.log(updatedCityName);
     return updatedCityName;
   }
 }
@@ -68,13 +66,25 @@ function pprintOneName(cityNameWithAZ) {
 
 function updateCity(event) {
   console.log(event.target.value);
-  let fullCityName = pprintCityNameTwo(event.target.value);
-  let timezone = getTimezoneFromCity(fullCityName);
+  let timezone;
+  let fullCityName;
+  let cityId;
+  if (event.target.value === "current") {
+    timezone = moment.tz.guess();
+    fullCityName = timezone.split("/")[1].replace("_", " ");
+    cityId = timezone.split("/")[1].replace("_", "-").toLowerCase();
+  } else {
+    cityId = event.target.value;
+    timezone = getTimezoneFromCity(fullCityName);
+    fullCityName = pprintCityNameTwo(event.target.value);
+  }
   console.log(timezone);
+  console.log(fullCityName);
+  console.log(cityId);
   let citiesElement = document.querySelector("#chosen-city");
   console.log(citiesElement);
   citiesElement.innerHTML = `
-  <div class="city" id="${event.target.value}">
+  <div class="city" id="${cityId}">
             <div>
               <h2>${fullCityName}</h2>
               <div class="date"></div>
