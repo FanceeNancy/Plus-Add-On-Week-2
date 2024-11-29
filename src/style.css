@@ -9,12 +9,16 @@ main {
   background: white;
   border-radius: 15px;
   padding: 25px;
+}
+
+h1 {
   text-align: center;
+  font-size: 36px;
 }
 
 h2 {
-  padding-left: 10px;
   margin: 0 0 5px;
+  font-size: 28px;
 }
 
 select {
@@ -56,7 +60,7 @@ select {
 .time {
   padding-right: 15px;
   padding-bottom: 5px;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: bold;
 }
 
